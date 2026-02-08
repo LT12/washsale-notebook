@@ -10,6 +10,11 @@ def _():
 
     return (mo,)
 
+@app.cell
+async def _():
+    import micropip
+    await micropip.install("polars")
+    return
 
 @app.cell(hide_code=True)
 def _():
