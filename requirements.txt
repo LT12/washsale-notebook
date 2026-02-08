@@ -1,0 +1,4 @@
+marimo
+pytest
+polars
+ruff
