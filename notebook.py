@@ -10,6 +10,11 @@ def _():
 
     return (mo,)
 
+@app.cell
+async def _():
+    import micropip
+    await micropip.install("polars")
+    return
 
 @app.cell(hide_code=True)
 def _():
@@ -161,19 +166,8 @@ def _(calculate_single_wash_sale, pl, transactions):
 
 
     adjusted_transactions = calculate_wash_sales(transactions)
-    adjusted_transactions.select(
-        pl.col("Index"),
-        pl.col("Type"),
-        pl.col("Quantity"),
-        pl.col("Date_Acquired"),
-        pl.col("Adjusted_Date_Acquired"),
-        pl.col("Date_Sold"),
-        pl.col("Proceeds"),
-        pl.col("Adjusted_Cost_Basis"),
-        pl.col("Wash_Sale_Loss_Deferred"),
-            pl.col("Realized_Gain_Loss"),
-        pl.col("Term"),
-    )
+    adjusted_transactions
+
     return (calculate_wash_sales,)
 
 
